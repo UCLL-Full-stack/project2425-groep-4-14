@@ -12,15 +12,15 @@ const Header: React.FC = () => {
                     <Link href="/" className="text-lg text-gray-300 hover:text-yellow-400 transition duration-200">
                         Home
                     </Link>
-                    <Link href="/songs" className="text-lg text-gray-300 hover:text-yellow-400 transition duration-200">
-                        Songs
-                    </Link>
                     <Link href="/playlists" className="text-lg text-gray-300 hover:text-yellow-400 transition duration-200">
                         Playlists
                     </Link>
-                    <Link href="/login" className="text-lg text-gray-300 hover:text-yellow-400 transition duration-200">
-                        Login
+                    <Link href="/songs" className="text-lg text-gray-300 hover:text-yellow-400 transition duration-200">
+                        Songs
                     </Link>
+                    {/* <Link href="/login" className="text-lg text-gray-300 hover:text-yellow-400 transition duration-200">
+                        Login
+                    </Link> */}
                 </nav>
             </div>
         </header>

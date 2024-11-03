@@ -10,7 +10,7 @@ const SongsOverview: React.FC<Props> = ({ songs }: Props) => {
     const [visibleCount, setVisibleCount] = useState(10);
     const [playlists, setPlaylists] = useState<Array<{ id: number; name: string }>>([]);
     const [isPopupVisible, setPopupVisible] = useState<number | null>(null);
-    
+
     useEffect(() => {
         const fetchPlaylists = async () => {
             const response = await playlistService.getAllPlaylists();
@@ -55,21 +55,27 @@ const SongsOverview: React.FC<Props> = ({ songs }: Props) => {
                                     <td className="px-4 py-2 border-b border-gray-200 text-left">{song.title}</td>
                                     <td className="px-4 py-2 border-b border-gray-200 text-left">{song.genre}</td>
                                     <td className="px-4 py-2 border-b border-gray-200 text-left">
-                                        <button onClick={() => togglePopup(index)} className="text-blue-600">Add song to playlist</button>
-                                        {isPopupVisible === index && (
-                                            <div className="absolute mt-2 w-48 bg-white shadow-md rounded-md border border-gray-200 z-10">
-                                                <ul>
-                                                    {playlists.map(playlist => (
-                                                        <li
-                                                            key={playlist.id}
-                                                            onClick={() => song.id && handleAddSongToPlaylist(song.id, playlist.id)}
-                                                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                                                        >
-                                                            {playlist.name}
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </div>
+                                        {playlists.length > 0 ? (
+                                            <>
+                                                <button onClick={() => togglePopup(index)} className="text-blue-600">Add song to playlist</button>
+                                                {isPopupVisible === index && (
+                                                    <div className="absolute mt-2 w-48 bg-white shadow-md rounded-md border border-gray-200 z-10">
+                                                        <ul>
+                                                            {playlists.map(playlist => (
+                                                                <li
+                                                                    key={playlist.id}
+                                                                    onClick={() => song.id && handleAddSongToPlaylist(song.id, playlist.id)}
+                                                                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                                                                >
+                                                                    {playlist.name}
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                                )}
+                                            </>
+                                        ) : (
+                                            <span className="text-gray-500">Make a playlist to add the song</span>
                                         )}
                                     </td>
                                 </tr>
@@ -93,3 +99,4 @@ const SongsOverview: React.FC<Props> = ({ songs }: Props) => {
 };
 
 export default SongsOverview;
+
